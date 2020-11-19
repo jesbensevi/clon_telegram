@@ -1,10 +1,10 @@
 const db = require("mongoose");
 const Model = require("./model");
-// mongodb+srv://dbJesben:root2810@cluster0.gxakc.mongodb.net/clon_telegram?retryWrites=true&w=majority
+
 db.Promise = global.Promise;
 
 db.connect(
-  "mongodb+srv://dbJesben:<password>@cluster0.gxakc.mongodb.net/clon_telegram?retryWrites=true&w=majority",
+  "MONGOURL://", // url mondodb database
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
