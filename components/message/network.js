@@ -4,17 +4,13 @@ const controller = require("./controller");
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  const filterMessage = req.query.user || null;
   controller
-    .getMessage()
+    .getMessage(filterMessage)
     .then((messageList) => {
       response.success(req, res, messageList, 200);
     })
     .catch((e) => response.error(req, res, "Unexpected Error", 500, e));
-});
-
-router.delete("/", (req, res) => {
-  console.log(req.body);
-  res.send("Hola desde delete");
 });
 
 router.post("/", function (req, res) {
@@ -45,6 +41,17 @@ router.patch("/:id", (req, res) => {
     })
     .catch((e) => {
       response.error(req, res, "Error en la matrix", 500, e);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  controller
+    .deleteMessage(req.params.id)
+    .then(() => {
+      response.success(req, res, "Se eliminaron los datos", 200);
+    })
+    .catch((e) => {
+      response.error(req, res, "Error por ahi", 500, e);
     });
 });
 
