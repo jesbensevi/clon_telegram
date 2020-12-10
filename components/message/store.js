@@ -1,16 +1,4 @@
-const db = require("mongoose");
 const Model = require("./model");
-
-db.Promise = global.Promise;
-
-db.connect(
-  "MONGOURL://", // url mondodb database,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
-console.log("DB: connet");
 
 function addMessage(message) {
   const myMessage = new Model(message);

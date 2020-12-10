@@ -1,5 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const db = require("./db");
+require("dotenv").config();
+
+db(process.env.MONGO_URL);
 
 // const router = require("./components/message/network");
 const router = require("./network/routes");
@@ -15,5 +19,7 @@ router(app);
 
 app.use("/app", express.static("public"));
 
-app.listen(3000);
-console.log("iniciado en localhost:3000");
+app.listen(3000, () => {
+  console.log(process.env.MONGO_URL);
+  console.log("iniciado en localhost:3000");
+});
